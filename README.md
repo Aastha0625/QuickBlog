@@ -38,7 +38,6 @@ cd quickblog
 ### 2. Set Up Environment Variables
 Create a `.env` file in the root directory and add the following:
 
-MONGODB_URI=your_mongodb_atlas_connection_string
 JWT_SECRET="secretkey123"
 GEMINI_API_KEY="AIzaSyB3SCmtjN7oCqHB5XfRCjstzU39EgpuaN0"
 
@@ -66,25 +65,6 @@ npm run dev
 4. **Engage:** Interact with your readers through the comments section.
 5. **Share:** Use built-in social media integration to share your posts.
 
-## 📁 Project Structure
-
-quickblog/
-│
-├── backend/
-│ ├── models/
-│ ├── routes/
-│ ├── controllers/
-│ └── server.js
-│
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── App.js
-│ │ └── index.js
-│ └── tailwind.config.js
-│
-└── README.md
 
 ## 🌐 Deployment
 
