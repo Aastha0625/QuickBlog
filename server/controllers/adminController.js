@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken';
 import Blog from '../models/Blog.js';
 import Comment from '../models/Comment.js';
 
-
+// Admin login controller
+// This controller checks the admin credentials and returns a JWT token if valid
 export const adminLogin = async (req, res) => {
     try {
         const {email,password} = req.body;
@@ -18,6 +19,8 @@ export const adminLogin = async (req, res) => {
     }
 }
 
+// Controller to get all blogs for admin
+// This controller fetches all blogs from the database and returns them in descending order of creation date
 export const getAllBlogsAdmin = async (req, res) => {
     try {
         const blogs = await Blog.find({}).sort({createdAt: -1});
@@ -27,7 +30,8 @@ export const getAllBlogsAdmin = async (req, res) => {
     }
 }
 
-
+// Controller to get all comments
+// This controller fetches all comments from the database, populates the associated blog data, and
 export const getAllComments = async (req, res) => {
     try {
         const comments = await Comment.find({}).populate('blog').sort({createdAt: -1});
@@ -37,6 +41,8 @@ export const getAllComments = async (req, res) => {
     }
 }
 
+// Controller to get dashboard data
+// This controller fetches various statistics for the admin dashboard, including the count of blogs, comments
 export const getDashboardData = async (req, res) => {
     try {
         const blogs = await Blog.countDocuments();
@@ -54,6 +60,9 @@ export const getDashboardData = async (req, res) => {
     }
 }
 
+
+// Controller to delete a comment by ID
+// This controller deletes a comment from the database based on the provided ID
 export const deleteCommentById = async (req, res) => {
     try {
         const {id} = req.body;
@@ -64,6 +73,9 @@ export const deleteCommentById = async (req, res) => {
     }
 }
 
+
+// Controller to approve a comment by ID
+// This controller updates the comment's approval status to true based on the provided ID
 export const approveCommentById = async (req, res) => {
     try {
         const {id} = req.body;

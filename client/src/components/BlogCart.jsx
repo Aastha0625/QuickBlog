@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const BlogCart = ({blog}) => {
 
-    const {title,description,category,image,_id} = blog;
+    const {title,content,category,image,_id} = blog;
     const navigate = useNavigate();
   return (
     <div onClick={() => navigate(`/blog/${_id}`)}
@@ -17,9 +17,9 @@ const BlogCart = ({blog}) => {
     </span>
     <div className="p-5">
         <h5 className="mb-2 text-lg font-semibold text-gray-900">{title}</h5>
-             <p className='mb-3 text-s text-gray-600' dangerouslySetInnerHTML={{"__html":
-                description.slice(0,80)
-             }}></p>
+             <p className='mb-3 text-s text-gray-600'
+                dangerouslySetInnerHTML={{ __html: (content || "").slice(0, 80) }}
+              ></p>
         </div>
     </div>
   )

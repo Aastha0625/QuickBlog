@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {assets, dashboard_data} from '../../assets/assets'
 import Blog_table_item from '../../components/admin/Blog_table_item'
+import { useAppContext } from '../../context/AppContext'
+import toast from 'react-hot-toast'
 
 const Dashboard = () => {
 
@@ -11,9 +13,35 @@ const Dashboard = () => {
     recentBlogs : [],
   })
 
-  const fetchDash = async ()=>{
-    setDashData(dashboard_data);
+  const [loading, setLoading] = useState(true);
+  
+const token = localStorage.getItem("token");
+console.log("Dashboard token:", token);
+
+  const {axios} = useAppContext();  
+  const fetchDash = async () => {
+  try {
+    setLoading(true)
+    const {data} = await axios.get('/api/admin/dashboard')
+    console.log("API Response:", data);
+    
+    if(data.success) {
+      // Handle both possible property names
+      const dashboardData = data.dashboardData || data.dashData;
+      setDashData({
+        ...dashboardData,
+        recentBlogs: dashboardData.recentBlogs || []
+      });
+    } else {
+      toast.error(data.message);
+    }
+  } catch (error) {
+    console.error("Dashboard fetch error:", error);
+    toast.error('Failed to fetch dashboard data');
+  } finally {
+    setLoading(false)
   }
+}
   useEffect(()=>{
     fetchDash();
   },[])
