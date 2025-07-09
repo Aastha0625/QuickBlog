@@ -32,13 +32,14 @@ https://quick-blog-sigma-five.vercel.app
 - MongoDB Atlas account
 
 ### 1. Clone the Repository
-git clone https://github.com/your-username/quickblog.git
+git clone https://github.com/Aastha0625/quickblog.git
 cd quickblog
 
 ### 2. Set Up Environment Variables
 Create a `.env` file in the root directory and add the following:
 
 JWT_SECRET="secretkey123"
+
 GEMINI_API_KEY="AIzaSyB3SCmtjN7oCqHB5XfRCjstzU39EgpuaN0"
 
 ### 3. Install Dependencies
